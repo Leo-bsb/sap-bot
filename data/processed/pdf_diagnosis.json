@@ -1,0 +1,42 @@
+{
+  "file_info": {
+    "file_size_mb": 10.690040588378906,
+    "file_path": "data/raw/ds_2025_reference_en.pdf",
+    "exists": true
+  },
+  "pymupdf_analysis": {
+    "page_count": 0,
+    "is_encrypted": false,
+    "metadata": {},
+    "can_access_pages": false,
+    "error": "document closed"
+  },
+  "alternative_methods": [
+    {
+      "method": "pymupdf_standard",
+      "success": true,
+      "page_count": 0,
+      "error": null
+    },
+    {
+      "method": "pymupdf_repair_mode",
+      "success": false,
+      "page_count": 0,
+      "error": "Document.__init__() got an unexpected keyword argument 'garbage'"
+    },
+    {
+      "method": "pymupdf_weak_encryption",
+      "success": false,
+      "page_count": 0,
+      "error": "Document.__init__() got an unexpected keyword argument 'password'"
+    },
+    {
+      "method": "page_by_page_recovery",
+      "success": false,
+      "page_count": 0,
+      "total_pages": 0,
+      "success_rate": 0,
+      "error": null
+    }
+  ]
+}
