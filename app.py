@@ -147,7 +147,6 @@ def render_sidebar():
             if st.button("🔄 Recarregar"):
                 # sinalizamos reset; o main() fará o reset com segurança
                 st.session_state._reset_app = True
-                st.experimental_rerun()  # agora é seguro porque estamos apenas marcando flag e retornando
 
         with col2:
             if st.button("🗑️ Limpar Chat"):
@@ -252,16 +251,25 @@ def main():
 
     # Reset seguro: só executa no topo do main (fora da renderização da sidebar)
     if st.session_state.get("_reset_app", False):
-        # preserva apenas a flag e limpa o resto
+        # Preservar apenas a flag, apagar o resto do estado do usuário
         preserve = {"_reset_app": False}
         keys = list(st.session_state.keys())
         for k in keys:
             if k not in preserve:
                 del st.session_state[k]
-        # re-inicializa defaults e forçar rerun seguro
+
+        # Re-inicializa defaults mínimos que init_session_state() espera
         init_session_state()
         st.session_state._reset_app = False
-        st.experimental_rerun()
+
+        # Tentar rerun — se falhar (por causa de contexto do Streamlit), cair para st.stop()
+        try:
+            st.experimental_rerun()
+        except Exception:
+            # Em alguns contexts / versões do Streamlit, experimental_rerun() lança erro.
+            # st.stop() interrompe a execução atual de forma segura; o usuário verá a UI recarregada na próxima interação.
+            st.stop()
+
 
     render_header()
     render_project_info()
