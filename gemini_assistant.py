@@ -33,6 +33,19 @@ INSTRUÇÕES:
 Responda diretamente em português de forma natural:
 """
 
+           try:
+        response = self.model.generate(prompt)
+        print(f"🟢 Resposta Gemini RAW: {response}")
+        print(f"🟢 Resposta Gemini TEXT: {getattr(response, 'text', None)}")
+        if hasattr(response, 'text') and response.text.strip():
+            return response.text
+        else:
+            print("⚠️ Resposta Gemini está vazia ou inválida")
+            return None
+    except Exception as e:
+        print(f"❌ Erro ao gerar resposta com Gemini: {e}\nContexto:\n{search_context}")
+        return None
+
         try:
             response = self.model.generate_text(prompt)
             return response.text
