@@ -221,7 +221,7 @@ def sidebar():
         st.caption("Clique para testar:")
         
         examples = [
-            ("🔍 Como usar a função LOOKUP?", "lookup"),
+            ("🔍 Como usar a função decode?", "decode"),
             ("✅ Como fazer validação de dados?", "validation"),
             ("📅 Como trabalhar com datas?", "dates"),
             ("🔤 Como manipular strings?", "strings"),
