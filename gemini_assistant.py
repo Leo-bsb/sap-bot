@@ -34,50 +34,36 @@ Responda diretamente em português de forma natural:
 """
 
         try:
-            # Ajuste para método generate conforme nova API
             response = self.model.generate(
                 prompt=prompt,
-                temperature=0.7,  # ajuste se quiser controlar criatividade
-                max_tokens=1024   # limite de tokens para resposta
+                temperature=0.7,
+                max_tokens=1024
             )
-            # A estrutura do retorno depende da API; vou supor que seja um dict com 'candidates' > 'output'
+            logging.info(f"🟢 Resposta Gemini RAW: {response}")
+
+            # Extração do texto considerando diferentes formatos possíveis
             text = None
-            if response and hasattr(response, 'candidates') and response.candidates:
+            if hasattr(response, 'candidates') and response.candidates:
                 text = response.candidates[0].output
-            elif isinstance(response, dict) and 'candidates' in response and len(response['candidates']) > 0:
-                text = response['candidates'][0].get('output', '')
-            
+                logging.info(f"🟢 Resposta Gemini TEXT: {text}")
+            else:
+                logging.warning("⚠️ Resposta Gemini não contém candidatos válidos")
+
             if text and text.strip():
                 return text.strip()
             else:
-                print("⚠️ Resposta Gemini está vazia ou inválida")
+                logging.warning("⚠️ Resposta Gemini está vazia ou inválida")
                 return None
+
         except Exception as e:
-            print(f"❌ Erro ao gerar resposta com Gemini: {e}\nContexto:\n{search_context}")
+            logging.error(f"❌ Erro ao gerar resposta com Gemini: {e}\nContexto:\n{search_context}")
             return None
 
-    def generate_code_example(self, function_name: str, search_results: List[Dict]) -> str:
-        search_context = "\n".join([f"Doc {i}: {r.get('text', '')}" for i, r in enumerate(search_results[:2], 1)])
-
-        prompt = f"""
-Com base na documentação do SAP Data Services abaixo, crie exemplos práticos em português para a função {function_name}:
-
-DOCUMENTAÇÃO:
-{search_context}
-
-Crie em português:
-1. Sintaxe completa da função
-2. Exemplo básico de uso
-3. Exemplo avançado com cenário real
-4. Explicação dos parâmetros
-
-Responda em português de forma clara e técnica:
-"""
 
         try:
             response = self.model.generate(
                 prompt=prompt,
-                temperature=0.7,
+                temperature=0.5,
                 max_tokens=1024
             )
             text = None
