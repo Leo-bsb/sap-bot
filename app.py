@@ -374,11 +374,7 @@ def main():
                         })
 
                     except Exception as e:
-                        error_msg = f"❌ **Erro ao processar pergunta:**
-
-`{str(e)}`
-
-Tente reformular ou entre em contato com o suporte."
+                        error_msg = f"❌ **Erro ao processar pergunta:**`{str(e)}`Tente reformular ou entre em contato com o suporte."
                         st.error(error_msg)
                         st.session_state.last_error = str(e)
                         st.session_state.messages.append({
