@@ -1,15 +1,16 @@
 import google.generativeai as genai
 import streamlit as st
 
-st.markdown("###Status")
+st.title("Teste Gemini Model - Listagem de métodos e atributos")
 
-genai.configure(api_key="SUA_API_KEY")
+API_KEY = st.text_input("Insira sua API Key do Google Generative AI", type="password")
 
-model = genai.GenerativeModel("gemini-2.0-flash")
+if API_KEY:
+    genai.configure(api_key=API_KEY)
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    attrs = dir(model)
 
-print(dir(model))
-
-
-
-
-
+    st.subheader("Atributos e métodos do modelo Gemini:")
+    st.code("\n".join(attrs))
+else:
+    st.info("Por favor, insira sua API Key para testar.")
