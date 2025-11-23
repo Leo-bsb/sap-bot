@@ -6,6 +6,7 @@ from typing import List, Dict, Any
 import polars as pl
 import numpy as np
 from sentence_transformers import SentenceTransformer
+import torch
 from intent_classifier import IntentClassifier
 
 # Import condicional do Gemini
@@ -20,8 +21,12 @@ class EnhancedEmbeddingManager:
     def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
         print(f"🔮 Carregando modelo: {model_name}")
         
-        # CORREÇÃO: Carrega o modelo sem especificar device inicialmente
-        self.model = SentenceTransformer(model_name)
+        self.model = SentenceTransformer(
+            model_name,
+            device="cpu",
+            use_auth_token=False
+        )
+        torch.set_default_dtype(torch.float32)
         
         self.intent_classifier = IntentClassifier(device="cpu")
         
