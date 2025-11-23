@@ -272,12 +272,19 @@ def main():
         .main {
             background-color: #f8f9fa;
         }
+        /* Chat message seguindo o tema */
         .stChatMessage {
-            background-color: white;
+            background-color: var(--secondary-background-color) !important;
+            color: var(--text-color) !important;
             border-radius: 10px;
             padding: 15px;
             margin: 10px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+    
+        /* Fundo geral seguindo o tema */
+        .main {
+            background-color: var(--background-color);
         }
         .stButton > button {
             border-radius: 5px;
