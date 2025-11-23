@@ -7,7 +7,7 @@ class GeminiAssistant:
     def __init__(self, api_key: str):
         genai.configure(api_key=api_key)
         # Confirmar o nome do modelo correto
-        self.model = genai.GenerativeModel('gemini-2.0-flash')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
 
     def generate_natural_response(self, user_query: str, search_results: List[Dict], context: str = "") -> str:
         search_context = ""
