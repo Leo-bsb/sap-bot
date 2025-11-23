@@ -23,7 +23,7 @@ class EnhancedEmbeddingManager:
         # CORREÇÃO: Carrega o modelo sem especificar device inicialmente
         self.model = SentenceTransformer(model_name)
         
-        self.intent_classifier = IntentClassifier()
+        self.intent_classifier = IntentClassifier(device="cpu")
         
         # Inicializa o Gemini Assistant
         self.gemini_assistant = None
