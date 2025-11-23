@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("Teste Gemini Model - Listagem de métodos e atributos")
 
-API_KEY = st.text_input("Insira sua API Key do Google Generative AI", type="password")
+API_KEY = GEMINI_API_KEY
 
 if API_KEY:
     genai.configure(api_key=API_KEY)
