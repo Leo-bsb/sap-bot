@@ -45,18 +45,12 @@ def init_session_state():
 
 
 def get_intelligent_response(user_query: str, search_result: SearchResult) -> str:
-    """Gera resposta priorizando resposta natural quando disponível.
-    Recebe um SearchResult (dataclass) para evitar acoplamento a dicts soltos.
-    """
-    # Checar objeto
     if search_result is None:
         return "❌ Erro: Resultado de busca inválido. Tente novamente ou verifique o índice."
 
-    # Se temos resposta natural do Gemini, usa ela
     if search_result.natural_response:
         return search_result.natural_response
 
-    # Fallback para resposta baseada em templates
     intent = search_result.intent or 'general_search'
     recommended_functions = search_result.recommended_functions or []
     results = search_result.results or []
@@ -85,17 +79,16 @@ def get_intelligent_response(user_query: str, search_result: SearchResult) -> st
         try:
             sim_txt = f"(Similaridade: {similarity:.3f})" if isinstance(similarity, (float, int)) else ""
         except Exception:
-            sim_txt = (""
+            sim_txt = ""
 
         text = result.get('text') or result.get('snippet') or "[sem texto]"
-        response_lines.append(f"**{i}. 📄** {sim_txt}"){text}")
+        response_lines.append(f"**{i}. 📄** {sim_txt} {text}")
 
     response_lines.append('---')
     response_lines.append('💡 **Dica:** Para mais detalhes, consulte a documentação completa do SAP Data Services.')
 
-    return "
+    return "\n".join(response_lines)
 
-".join(response_lines)
 
 
 def render_header():
