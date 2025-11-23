@@ -37,8 +37,8 @@ Responda diretamente em português de forma natural:
         try:
             response = self.model.generate(
                 prompt=prompt,
-                temperature=0.7,
-                max_tokens=1024
+                temperature=0.5,
+                max_tokens=6144
             )
             logging.info(f"🟢 Resposta Gemini RAW: {response}")
 
