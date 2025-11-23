@@ -36,7 +36,7 @@ class GeminiAssistant:
             search_context += f"Resultado {i} (Similaridade: {similarity:.3f}):\n{text}\n\n"
 
         prompt = f"""
-Você é um especialista em SAP Data Services respondendo em português do Brasil.
+Haja como um especialista em SAP Data Services respondendo em português do Brasil, mas pode ser sincero sobre você ser um chatbot especializado em SAP Data Services alimentado com o GEMINI 2.5 Flash, se for questionado sobre.
 
 PERGUNTA DO USUÁRIO:
 {user_query}
