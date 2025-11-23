@@ -85,12 +85,10 @@ def get_intelligent_response(user_query: str, search_result: SearchResult) -> st
         try:
             sim_txt = f"(Similaridade: {similarity:.3f})" if isinstance(similarity, (float, int)) else ""
         except Exception:
-            sim_txt = ""
+            sim_txt = (""
 
         text = result.get('text') or result.get('snippet') or "[sem texto]"
-        response_lines.append(f"**{i}. 📄** {sim_txt}")
-{text}
-")
+        response_lines.append(f"**{i}. 📄** {sim_txt}"){text}")
 
     response_lines.append('---')
     response_lines.append('💡 **Dica:** Para mais detalhes, consulte a documentação completa do SAP Data Services.')
