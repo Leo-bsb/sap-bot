@@ -153,12 +153,14 @@ def render_sidebar():
 
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🔄 Recarregar Índice"):
+            if st.button("🔄 Recarregar"):
                 # Em vez de rerun, sinalizamos que o índice precisa ser recarregado
                 st.session_state.system_ready = False
                 st.session_state.emb_manager = None
                 st.session_state.last_error = None
-                st.experimental_rerun()
+                st.session_state.clear()
+                st.stop()
+
 
         with col2:
             if st.button("🗑️ Limpar Chat"):
