@@ -185,7 +185,7 @@ def process_question(question: str):
 # --- Sidebar melhorada ---
 def sidebar():
     with st.sidebar:
-        st.image("https://via.placeholder.com/150x50/0066CC/FFFFFF?text=SAP+DS", use_container_width=True)
+        st.image("https://camo.githubusercontent.com/0cb254240044fcc0406e0ac82432995d10e7fe753f8c134d1f36ed362bb70dd5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5341502d4461746125323053657276696365732d4542414631363f6c6f676f3d736170", use_container_width=True)
         
         st.markdown("### 🎯 Controles Rápidos")
         
