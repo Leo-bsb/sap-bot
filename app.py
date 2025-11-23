@@ -88,7 +88,7 @@ def get_intelligent_response(user_query: str, search_result: SearchResult) -> st
             sim_txt = ""
 
         text = result.get('text') or result.get('snippet') or "[sem texto]"
-        response_lines.append(f"**{i}. 📄** {sim_txt}
+        response_lines.append(f"**{i}. 📄** {sim_txt}")
 {text}
 ")
 
