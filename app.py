@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("Teste Gemini Model - Listagem de métodos e atributos")
 
-API_KEY = GEMINI_API_KEY
+API_KEY = st.secrets["GEMINI_API_KEY"]  # <-- acessar assim
 
 if API_KEY:
     genai.configure(api_key=API_KEY)
