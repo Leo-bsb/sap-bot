@@ -8,9 +8,6 @@ from datetime import datetime
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-st.write("🔑 GEMINI_API_KEY está definida?", bool(os.getenv("GEMINI_API_KEY")))
-
-
 def init_session_state():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
