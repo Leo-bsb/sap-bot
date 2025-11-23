@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai
+import logging
 from typing import Dict, List
 
 class GeminiAssistant:
